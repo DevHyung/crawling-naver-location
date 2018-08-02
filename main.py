@@ -20,6 +20,7 @@ headers ={
 def get_data_by_json():
     global row
     for idx in range(1,1):
+        print(">>> {} 페이지 진행중".format(idx))
         url = 'https://map.naver.com/search2/local.nhn?query=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%ED%97%AC%EC%8A%A4%EC%9E%A5&page={}&type=SITE_1&queryRank=1&re=1&siteSort=0&menu=location&searchCoord=127.034232%3B37.5225475&sm=clk&mpx=09230536%3A37.5756587%2C127.0242719%3AZ7%3A0.5251888%2C0.2401626'
         html = requests.get(url.format(idx),headers=headers)
         jsonStr = json.loads(html.text)
@@ -35,6 +36,7 @@ def get_data_by_json():
                 worksheet.write_row(row, 0, [name,roadAddress,address,tel,homepage,detailBaseUrl+code])
                 row+=1
         else:
+            print("끝")
             break
         time.sleep(random.randint(4,7))
 def get_query_list():
@@ -59,7 +61,7 @@ if __name__ == "__main__":
     #=== ~()
     workbook.close()
     """
-    #경기 강원 경상남도 경상북도 
+    # 경기 강원ㅇ 경상남도 경상북도 
     # 광주,대구,대전,부산,서울특별,울산,인천광역시
     # 전라남도 전라북도 제주특별자치
     # 충첨남도 충청북도 세종특별자치
